@@ -3,7 +3,8 @@ import PostcardCont from './PostcardCont'
 
 export default class MainCont extends React.Component {
     state={
-        postcardsArr: []
+        postcardsArr: [],
+        responsesArr: []
     }
 
     componentDidMount() {
@@ -14,13 +15,22 @@ export default class MainCont extends React.Component {
             postcardsArr: postcards
           })
         })
+
+        fetch("http://localhost:3000/responses")
+        .then(r => r.json())
+        .then((responses) => {
+          this.setState({
+            responsesArr: responses
+          })
+        })
+        
     }
 
 
     render() {
         return (<div>
             {console.log(this.state)}
-            <PostcardCont cards={this.state.postcardsArr}/>
+            <PostcardCont cards={this.state.postcardsArr} responses={this.state.responsesArr}/>
         </div>)
     }
 }

@@ -1,5 +1,6 @@
 import React from 'react'
 import PostcardCont from './PostcardCont'
+import PostcardForm from './PostcardForm'
 
 export default class MainCont extends React.Component {
     state={
@@ -26,10 +27,15 @@ export default class MainCont extends React.Component {
         
     }
 
+    createPostcard = (newCard) => {
+      console.log(newCard)
+    }
+
 
     render() {
         return (<div>
             {console.log(this.state)}
+            <PostcardForm createPostcard={this.createPostcard}/>
             <PostcardCont cards={this.state.postcardsArr} responses={this.state.responsesArr}/>
         </div>)
     }
